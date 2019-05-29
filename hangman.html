@@ -1,20 +1,32 @@
 <html>
 <body>
-    <head>Hangman in TypeScript<br></head>
-    <p1>Choose a Catagory and Press Start:</p1>
-    <form id="w" action="/action_page.php"></form>
-        <input type="radio" name="cat" value="marvel"> Marvel<br>
-        <input type="radio" name="cat" value="pokemon"> Pokemon Starters<br>
-        <input type="radio" name="cat" value="nhl"> NHL Teams<br>
-        <input type="radio" name="cat" value="nba"> NBA Teams<br>
-        <input type="button" onclick="startGame()" value="Start">
-    </form>
+    <link rel="stylesheet" href="hangman.css">
+    <h1 class="title">Hangman in TypeScript<br></h1>
+    <p1 class="header">Choose a Catagory and Press Start:</p1>
+    <div class="form">
+        <form id="w" action="/action_page.php"></form>
+            <label class="radio-label">
+                <input type="radio" name="cat" id="MARVEL">
+            Marvel</label>
+            <label class="radio-label">
+                <input type="radio" name="cat" id="POKE">
+            Pokemon Starters</label>
+            <label class="radio-label">
+                <input type="radio" name="cat" id="NHL">
+            NHL Teams</label>
+            <label class="radio-label">
+                <input type="radio" name="cat" id="NBA">
+            NBA Teams</label><br/>
+    </div>
+            <input class="button" type="button" onclick="startGame()" value="Start">
+        </form>
     <script src="hangman.js"></script>
-    <p7><br></p7>
-    <p2 id="word"></p2>
-    <p4><br></p4>
-    <p3 id="miss"></p3>
-    <p5><br></p5>
-    <p6 id="end"></p6>
+    </br>
+    <p2 class="paragraph" id="word"></p2>
+    </br>
+    <p3 class="paragraph" id="miss"></br></p3>
+    </br>
+    <p6 class="paragraph" id="end"></br></p6>
+    </br>
 </body>
 </html>

@@ -1,9 +1,6 @@
 
 function startGame()
-{
-    var radioValue = (<HTMLInputElement>document.getElementById('cat')).value;
-    console.log(radioValue);
-    
+{   
     var words : string[];
     var marvel = ['Captain America','Iron Man','Thor','Spiderman','Hawkeye','Deadpool','Black Widow','Scarlet Witch','Hulk','Captain Marvel','Ant Man','Wasp',
                  'Winter Soldier','Black Panther','Doctor Strange','Starlord','Drax','Nebula','Gamora','Rocket Racoon','Groot','War Machine', 'Falcon'];
@@ -15,17 +12,21 @@ function startGame()
     var nba = ['Celtics','Nets','Knicks','Seventy Sixers','Raptors','Bulls','Cavaliers','Pistons','Pacers','Bucks','Hawks','Hornets','Heat','Magic','Wizards','Nuggets',
                'Timberwolves','Thunder','Trail Blazers','Jazz','Warriors','Clippers','Lakers','Suns','Kings','Mavericks','Rockets','Grizzlies','Pelicans','Spurs'];
     
-    words = marvel;
+    var radios = document.querySelector('input[name="cat"]:checked');
     
-    if(radioValue == 'pokemon')
+    if(radios.id == "MARVEL")
+    {
+        words = marvel;
+    }
+    else if(radios.id == "POKE")
     {
         words = pokemon;
     }
-    else if(radioValue == 'nhl')
+    else if(radios.id == "NHL")
     {
         words = nhl;
     }
-    else if(radioValue == 'nba')
+    else if(radios.id == "NBA")
     {
         words = nba;
     }

@@ -1,0 +1,49 @@
+body
+{
+    background-color: #E3E3E3;
+    text-align: center;
+}
+.title
+{
+    font-family: Helvetica;
+    color: #488FB0;
+    font-size: 35px;
+}
+.button
+{
+    background-color: #488FB0; /* Green */
+    margin: 5px;
+    padding: 10px 20px;
+    color: white;
+    display: inline-block;
+    font-size: 16px;
+}
+.form
+{
+    box-sizing: border-box;
+    width: 200px;
+    background-color: #488FB0;
+    padding: 3px;
+    border: 3px solid white;
+    margin: 0 auto;
+}
+.radio-label
+{
+    color: white;
+    font-family: sans-serif;
+    display: block;
+    position: relative;
+    cursor: pointer;
+    text-align: left;
+}
+.header
+{
+    font-family: Arial;
+    font-size: 17px;
+}
+.paragraph
+{
+    font-family: Arial;
+    font-weight: bold;
+}
+
