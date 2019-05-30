@@ -121,7 +121,7 @@ var Game = /** @class */ (function () {
             document.getElementById("word").innerHTML = hiddenWord.join(" ");
             ;
             document.getElementById("miss").innerHTML = "Total Misses: " + misses + " / " + maxMisses;
-            if (solved == true || misses >= 10) {
+            if (solved == true || misses >= maxMisses) {
                 endGame();
             }
         };
