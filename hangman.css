@@ -11,7 +11,7 @@ body
 }
 .button
 {
-    background-color: #488FB0; /* Green */
+    background-color: #488FB0;
     margin: 5px;
     padding: 10px 20px;
     color: white;
@@ -41,9 +41,25 @@ body
     font-family: Arial;
     font-size: 17px;
 }
-.paragraph
+.endgame
 {
     font-family: Arial;
     font-weight: bold;
+}
+#letter
+{
+    background-color: #488FB0;
+    margin: 5px;
+    border-radius: 8px;
+    height: 30px;
+    width: 30px;
+    color: white;
+    display: inline-block;
+    font-size: 16px;
+}
+#alphabet
+{
+    width: 400px;
+    display: inline-block
 }
 

@@ -1,3 +1,22 @@
+var alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h',
+                'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p',
+                'q', 'r', 's','t', 'u', 'v', 'w', 'x',
+                'y', 'z'];
+
+var word : string[];
+var hiddenWord: string[];
+var solved: boolean = false;
+var misses: number = 0;
+var maxMisses : number = 7;
+var myButtons;
+var letters;
+var list;
+var guesses : string[];
+var wordHolder;
+var correct;
+var guess;
+var spaces : number = 0;
+var cat : string;
 
 function startGame()
 {   
@@ -11,123 +30,140 @@ function startGame()
                'Canucks','Golden Knights'];
     var nba = ['Celtics','Nets','Knicks','Seventy Sixers','Raptors','Bulls','Cavaliers','Pistons','Pacers','Bucks','Hawks','Hornets','Heat','Magic','Wizards','Nuggets',
                'Timberwolves','Thunder','Trail Blazers','Jazz','Warriors','Clippers','Lakers','Suns','Kings','Mavericks','Rockets','Grizzlies','Pelicans','Spurs'];
-    
+
     var radios = document.querySelector('input[name="cat"]:checked');
     
     if(radios.id == "MARVEL")
     {
         words = marvel;
+        cat = "Marvel Character"
     }
     else if(radios.id == "POKE")
     {
         words = pokemon;
+        cat = "Pokemon Starter";
     }
     else if(radios.id == "NHL")
     {
         words = nhl;
+        cat = "NHL Team";
     }
     else if(radios.id == "NBA")
     {
         words = nba;
+        cat = "NBA Team";
     }
 
     var rand = words[Math.floor(Math.random() * words.length)];
     var newGame: Game = new Game(rand);
 }
+function endGame()
+{
+    var gameAlpha = document.getElementById("alphabet");
+    gameAlpha.style.display = 'none';
 
+    var strFinal = hiddenWord.join(" ");
+    var answer = word.join("");
+
+    if(misses == maxMisses)
+    {
+        document.getElementById("word").innerHTML = "Answer: " + answer + "</br>Your Result: " + strFinal;
+        document.getElementById("end").innerHTML = "You Lost :(";
+    }
+    else if(solved)
+    {
+        document.getElementById("word").innerHTML = "Answer: " + strFinal;
+        document.getElementById("end").innerHTML = "You Win! :)";
+    }
+    document.getElementById("miss").innerHTML = "Total Misses: " + this.misses + " / " + this.maxMisses;
+}
 class Game
 {
-    word : string;
-    hiddenWord: string;
-    solved: boolean = false;
-    misses: number = 0;
-    maxMisses : number = 3;
-
     constructor(public gameWord)
     {
-        this.word = gameWord;
-        if(this.word.length > 9)
-        {
-            this.maxMisses = Math.floor(this.word.length/3);
-        }
-        this.play();
-    }
-    private play() 
-    {
+        word = gameWord.split("");
         this.setSpaces();
-
-        while(!this.solved && this.misses < this.maxMisses)
-        {
-            this.printHidden();
-            this.printMisses();
-            
-            this.guessLetter();
-
-            this.checkSolve();
-        }
-        this.printEnd();
+        var startMenu = document.getElementById("menu");
+        startMenu.style.display = 'none';
+        this.ogDisplay();
+        this.setButtons();
     }
-    private printEnd()
+    private ogDisplay()
     {
-        this.printHidden();
-        this.printMisses();
+        document.getElementById("header").innerHTML = "Hint: " + cat;
+        document.getElementById("word").innerHTML = hiddenWord.join(" ");
+        document.getElementById("miss").innerHTML = "Total Misses: " + misses + " / " + maxMisses;
+    }
+    private setButtons()
+    {
+        myButtons = document.getElementById('buttons');
+        letters = document.createElement('ul');
+        letters.id = 'alphabet';
+        letters.class = 'alphabet';
 
-        if(this.misses == this.maxMisses)
+        for(var x = 0; x < alphabet.length; x++)
         {
-            document.getElementById("end").innerHTML = "You Lost :(";
-        }
-        else if(this.solved)
-        {
-            document.getElementById("end").innerHTML = "You Win! :)";
+            list = document.createElement('button');
+            list.id = 'letter';
+            list.class = 'letter';
+            list.innerHTML = alphabet[x];
+            this.onClick();
+            myButtons.appendChild(letters);
+            letters.appendChild(list);
         }
     }
-    private checkSolve()
+    private onClick()
     {
-        if(this.word.toUpperCase() == this.hiddenWord.toUpperCase()) this.solved = true;
-    }
-    private guessLetter()
-    {
-        var c = prompt("Guess a Letter:\n" + this.hiddenWord + "\n" + "Total Misses: " + this.misses + " / " + this.maxMisses);
-        var found : boolean = false;
-
-        for (var x = 0; x < this.hiddenWord.length; x++)
+        list.onclick = function()
         {
-            if(this.word.charAt(x).toUpperCase() == c.toUpperCase())
+            var guess = (this.innerHTML);
+            this.setAttribute("class", "active");
+            this.onclick = null;
+            var m : number = 0;
+            for(var x = 0; x < word.length; x++)
             {
-                this.hiddenWord = this.hiddenWord.substr(0,x) + this.word.charAt(x) + this.hiddenWord.substr(x+1);
-                found = true;
+                if(word[x].toLowerCase() == guess)
+                {
+                    hiddenWord[x] = word[x];
+                }
+                else
+                {
+                    m++;
+                }
             }
+            if(m == word.length) { misses++; }
+            var count : number = 0;
+            for(var x = 0; x < word.length; x++)
+            {
+                if(word[x] == hiddenWord[x])
+                {
+                    count++;
+                }
+                if(count == word.length)
+                {
+                    solved = true;
+                }
+            }
+            document.getElementById("word").innerHTML = hiddenWord.join(" ");;
+            document.getElementById("miss").innerHTML = "Total Misses: " + misses + " / " + maxMisses;
+            if(solved == true || misses >= 10)
+            {
+                endGame();
+            } 
         }
-        if(found == false)
-        {
-           this.misses++;
-        }
-        
-        return this.hiddenWord
-    }
-    private printHidden()
-    {
-        document.getElementById("word").innerHTML = this.hiddenWord;
     }
     private setSpaces()
     {
         var x = 0;
-        this.hiddenWord = "";
-        while (x < this.word.length)
+        hiddenWord = word.slice();
+
+        while (x < word.length)
         {
-            if(this.word.charAt(x) == ' ')
+            if(word[x] != ' ')
             {
-                this.hiddenWord+=' ';
-            }
-            else
-            {
-                this.hiddenWord+="?";
+                hiddenWord[x] = "_";
             }
             x++;
         }
-    }
-    private printMisses()
-    {
-        document.getElementById("miss").innerHTML = "Total Misses: " + this.misses + " / " + this.maxMisses;
     }
 }

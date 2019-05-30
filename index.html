@@ -2,31 +2,42 @@
 <body>
     <link rel="stylesheet" href="hangman.css">
     <h1 class="title">Hangman in TypeScript<br></h1>
-    <p1 class="header">Choose a Catagory and Press Start:</p1>
-    <div class="form">
-        <form id="w" action="/action_page.php"></form>
-            <label class="radio-label">
-                <input type="radio" name="cat" id="MARVEL">
-            Marvel</label>
-            <label class="radio-label">
-                <input type="radio" name="cat" id="POKE">
-            Pokemon Starters</label>
-            <label class="radio-label">
-                <input type="radio" name="cat" id="NHL">
-            NHL Teams</label>
-            <label class="radio-label">
-                <input type="radio" name="cat" id="NBA">
-            NBA Teams</label><br/>
+    
+    <p id="header" class="header">Choose a Catagory and Press Start:</p>
+    <div id="menu">
+        <div class="form">
+            <form id="w" action="/action_page.php"></form>
+                <label class="radio-label">
+                    <input type="radio" name="cat" id="MARVEL">
+                Marvel Characters</label>
+                <label class="radio-label">
+                    <input type="radio" name="cat" id="POKE">
+                Pokemon Starters</label>
+                <label class="radio-label">
+                    <input type="radio" name="cat" id="NHL">
+                NHL Teams</label>
+                <label class="radio-label">
+                    <input type="radio" name="cat" id="NBA">
+                NBA Teams</label><br/>
+        </div>
+                <input class="button" type="button" onclick="startGame()" value="Start">
+            </form>
     </div>
-            <input class="button" type="button" onclick="startGame()" value="Start">
-        </form>
+    <div class=wrapper id="wrapper">
+        <div id="buttons">
+        </div>
+        <div id="hold">
+        </div>
+    </div>
     <script src="hangman.js"></script>
     </br>
-    <p2 class="paragraph" id="word"></p2>
-    </br>
-    <p3 class="paragraph" id="miss"></br></p3>
-    </br>
-    <p6 class="paragraph" id="end"></br></p6>
-    </br>
+    <div class="endGame" id="endGame">
+        <p id="word"></p2>
+        </br>
+        <p id="miss"></br></p3>
+        </br>
+        <p id="end"></br></p6>
+        </br>
+    </div>
 </body>
 </html>
