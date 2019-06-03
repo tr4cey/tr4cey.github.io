@@ -1,5 +1,5 @@
-# tr4cey.github.io
-Hangman made in typescript
+# Hangman made in typescript
+tr4cey.github.io
 
 Simple hangman game created in an effort to learn TypeScript, HTML, and CSS
 
