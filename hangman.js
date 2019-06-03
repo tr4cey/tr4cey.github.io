@@ -57,7 +57,7 @@ function endGame() {
         document.getElementById("end").innerHTML = "You Lost :(";
     }
     else if (solved) {
-        document.getElementById("word").innerHTML = "Answer: " + strFinal;
+        document.getElementById("word").innerHTML = "Answer: " + answer;
         document.getElementById("end").innerHTML = "You Win! :)";
     }
     document.getElementById("miss").innerHTML = "Total Misses: " + this.misses + " / " + this.maxMisses;
@@ -84,8 +84,8 @@ var Game = /** @class */ (function () {
         letters["class"] = 'alphabet';
         for (var x = 0; x < alphabet.length; x++) {
             list = document.createElement('button');
-            list.id = 'letter';
-            list["class"] = 'letter';
+            list.id = alphabet[x];
+            list.classList.add('letters');
             list.innerHTML = alphabet[x];
             this.onClick();
             myButtons.appendChild(letters);
@@ -118,6 +118,7 @@ var Game = /** @class */ (function () {
                     solved = true;
                 }
             }
+            document.getElementById(guess).style.display = 'none';
             document.getElementById("word").innerHTML = hiddenWord.join(" ");
             ;
             document.getElementById("miss").innerHTML = "Total Misses: " + misses + " / " + maxMisses;

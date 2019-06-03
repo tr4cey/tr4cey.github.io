@@ -72,7 +72,7 @@ function endGame()
     }
     else if(solved)
     {
-        document.getElementById("word").innerHTML = "Answer: " + strFinal;
+        document.getElementById("word").innerHTML = "Answer: " + answer;
         document.getElementById("end").innerHTML = "You Win! :)";
     }
     document.getElementById("miss").innerHTML = "Total Misses: " + this.misses + " / " + this.maxMisses;
@@ -104,8 +104,8 @@ class Game
         for(var x = 0; x < alphabet.length; x++)
         {
             list = document.createElement('button');
-            list.id = 'letter';
-            list.class = 'letter';
+            list.id = alphabet[x];
+            list.classList.add('letters');
             list.innerHTML = alphabet[x];
             this.onClick();
             myButtons.appendChild(letters);
@@ -144,6 +144,7 @@ class Game
                     solved = true;
                 }
             }
+            document.getElementById(guess).style.display = 'none';
             document.getElementById("word").innerHTML = hiddenWord.join(" ");;
             document.getElementById("miss").innerHTML = "Total Misses: " + misses + " / " + maxMisses;
             if(solved == true || misses >= maxMisses)
