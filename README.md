@@ -1,4 +1,4 @@
-# Hangman made in typescript
+# Hangman Made in TypeScript
 rtracey.com or tr4cey.github.io
 
 Simple hangman game created in an effort to learn TypeScript, HTML, and CSS
