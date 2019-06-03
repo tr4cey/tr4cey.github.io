@@ -17,6 +17,7 @@ var correct;
 var guess;
 var spaces : number = 0;
 var cat : string;
+var reset;
 
 function startGame()
 {   
@@ -76,6 +77,23 @@ function endGame()
         document.getElementById("end").innerHTML = "You Win! :)";
     }
     document.getElementById("miss").innerHTML = "Total Misses: " + this.misses + " / " + this.maxMisses;
+    
+    var resetDiv = document.getElementById('resetbutton');
+    reset = document.createElement('button');
+    reset.id = 'reset';
+    reset.innerHTML = 'Reset';
+    resetClick();
+    resetDiv.appendChild(reset);
+}
+function resetClick()
+{
+    reset.onclick = function()
+    {
+        this.setAttribute("class", "active");
+        this.onclick = null;
+
+        window.location.reload(false);
+    }
 }
 class Game
 {
@@ -145,7 +163,7 @@ class Game
                 }
             }
             document.getElementById(guess).style.display = 'none';
-            document.getElementById("word").innerHTML = hiddenWord.join(" ");;
+            document.getElementById("word").innerHTML = hiddenWord.join(" ");
             document.getElementById("miss").innerHTML = "Total Misses: " + misses + " / " + maxMisses;
             if(solved == true || misses >= maxMisses)
             {
